@@ -27,7 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['fx-calendar-web-scraper.herokuapp.com']
 
-CSRF_TRUSTED_ORIGINS = ['https://fx-calendar-web-scraper.herokuapp.com', 'fx-calendar-web-scraper.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://fx-calendar-web-scraper.herokuapp.com']
+
 
 # Application definition
 
