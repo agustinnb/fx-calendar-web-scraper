@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-gp--6f!i&si7*fp9i@b+_vc691iit%ay2sa!$%kx7apg8l&&@j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['fx-calendar-web-scraper.herokuapp.com']
 
 
 # Application definition
