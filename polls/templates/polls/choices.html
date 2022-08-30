@@ -1,0 +1,17 @@
+<html>
+<head>
+</head>
+<body>
+    <p style="font-size: 10px;">
+    {% if choice_list %}
+    <ul>
+    {% for choice in choice_list %}
+        <li>{{ choice.choice_text }}</li>
+    {% endfor %}
+    </ul>
+    {% else %}
+    <p>No choices are available.</p>
+    {% endif %}
+    </p>
+</body>
+</html>
