@@ -9,12 +9,12 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -25,9 +25,9 @@ SECRET_KEY = 'django-insecure-gp--6f!i&si7*fp9i@b+_vc691iit%ay2sa!$%kx7apg8l&&@j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['fx-calendar-web-scraper.herokuapp.com']
+ALLOWED_HOSTS = ['fx-calendar-web-scraper.herokuapp.com', 'localhost', '127.0.0.1']
 
-CSRF_TRUSTED_ORIGINS = ['https://fx-calendar-web-scraper.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://fx-calendar-web-scraper.herokuapp.com', 'http://localhost']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'fxcalendar'
 ]
 
 MIDDLEWARE = [
@@ -129,3 +130,11 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+STATICFILES_DIRS = (os.path.join(SETTINGS_PATH, 'static'),)
+MEDIA_ROOT = os.path.join(SETTINGS_PATH, 'media')
