@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'fxcalendar'
 ]
 
@@ -79,14 +80,14 @@ WSGI_APPLICATION = 'fx-calendar-web-scraper.wsgi.application'
 
 DATABASES = {
     'default': {
-    #    'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #    'NAME': 'd8q7q926sob5if',
-    #    'USER': 'lzhxopekerjaby',
-    #    'PASSWORD': 'a5e90648b71ebb20a6c5cba94b056bd2e04cb676d54e7f9f7e901c60f86b161f',
-    #    'HOST': 'ec2-34-199-68-114.compute-1.amazonaws.com',
-    #    'PORT': '5432',
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd8q7q926sob5if',
+        'USER': 'lzhxopekerjaby',
+        'PASSWORD': 'a5e90648b71ebb20a6c5cba94b056bd2e04cb676d54e7f9f7e901c60f86b161f',
+        'HOST': 'ec2-34-199-68-114.compute-1.amazonaws.com',
+        'PORT': '5432',
+    #    'ENGINE': 'django.db.backends.sqlite3',
+    #    'NAME': 'fx-calendar-web-scraper.mydatabase',
     }, 
 }
 

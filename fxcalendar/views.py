@@ -31,18 +31,6 @@ class SchedulingError(Exception):
 @require_http_methods(['POST', 'GET'])
 def crawl(request):
     if request.method == 'POST':
-        url = request.POST.get('url', None)
-        if not url:
-            return JsonResponse(
-                {'error': 'URL BAD REQUEST'},
-                status=HTTPStatus.BAD_REQUEST
-            )
-        if not is_valid_url(url):
-            return JsonResponse(
-                {'error': 'URL BAD REQUEST'},
-                status=HTTPStatus.BAD_REQUEST
-            )
-        domain = urlparse(url).netloc
         unique_id = str(uuid4())
 
         settings = {
@@ -50,7 +38,7 @@ def crawl(request):
             'USER_AGENT': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
         }
         try:
-            task = scrapyd.schedule('default', 'fxcalendar', settings=settings, url=url, domain=domain)
+            task = scrapyd.schedule('default', 'fxcalendar', settings=settings)
         except SchedulingError as e:
             return JsonResponse(
                 {'error': e},
@@ -82,17 +70,18 @@ def crawl(request):
                         status=HTTPStatus.NOT_FOUND
                     )
                 dict_list = []
-               # for i in list(item):
-               #     dict_data = {
-               #         'url': i.url,
-               #         'title': i.title,
-               #         'contents': i.contents,
-               #         'published_date': i.published_date.strftime('%Y-%m-%d %H:%M'),
-               #         'views': i.views,
-               #         'recommends': i.recommends,
-               #         'date': i.date.strftime('%Y-%m-%d %H:%M')
-               #     }
-               #     dict_list.append(dict_data)
+                for i in list(item):
+                    dict_data = {
+                        'unique_id': i.Unique_id,
+                        'ticker': i.ticker,
+                        'symbol': i.symbol,
+                        'date': i.date,
+                        'title': i.title,
+                        'description': i.description,
+                        'importance': i.importance,
+                        'lastUpdate': i.lastUpdate
+                    }
+                    dict_list.append(dict_data)
                 data = {'data': dict_list}
                 return JsonResponse(data)
             except Exception as e:
@@ -104,24 +93,24 @@ def crawl(request):
 
 
 def show_data(request):
-    category = request.GET.get('category', None)
-    item = ScrapyItem.objects.filter(category=category)
+    item = ScrapyItem.objects.order_by('-lastUpdate')[:5]
     if not item:
         return JsonResponse(
             {'error': 'There is no data in database'},
             status=HTTPStatus.NOT_FOUND
         )
     dict_list = []
-    #for i in list(item):
-    #    dict_data = {
-    #        'url': i.url,
-    #        'title': i.title,
-    #        'contents': i.contents,
-    #        'published_date': i.published_date.strftime('%Y-%m-%d %H:%M'),
-    #        'views': i.views,
-    #        'recommends': i.recommends,
-    #        'date': i.date.strftime('%Y-%m-%d %H:%M')
-    #    }
-    #    dict_list.append(dict_data)
+    for i in list(item):
+        dict_data = {
+                        'unique_id': i.Unique_id,
+                        'ticker': i.ticker,
+                        'symbol': i.symbol,
+                        'date': i.date,
+                        'title': i.title,
+                        'description': i.description,
+                        'importance': i.importance,
+                        'lastUpdate': i.lastUpdate
+        }
+        dict_list.append(dict_data)
     data = {'data': dict_list}
     return JsonResponse(data)

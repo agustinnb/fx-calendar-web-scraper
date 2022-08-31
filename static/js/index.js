@@ -1,21 +1,9 @@
 var taskId;
 var uniqueId;
 var statusInterval;
-var url;
-var siteUrl = {
-    1: 'http://www.inven.co.kr/board/maple/2587?p=',
-    2: 'http://www.inven.co.kr/board/maple/2299?p='
-};
-var selectedCategory;
 
 $(document).ready(function(){
     $(document).on('click', '#start-crawl', function(){
-        selectedCategory = $('#site-select option:selected').val();
-        for(k in siteUrl){
-            if(k === selectedCategory){
-                url = siteUrl[k]
-            }
-        }
         $('#progress').attr("class", "alert alert-secondary");
         $('#progress').html('crawler is working...');
         $.ajax({
@@ -30,13 +18,9 @@ $(document).ready(function(){
     });
 
     $(document).on('click', '#show-data', function(){
-        selectedCategory = $('#site-select option:selected').val();
         $.ajax({
             url: '/api/showdata/',
             type: 'GET',
-            data: {
-                'category': selectedCategory
-            },
             success: showData,
             error: showDataFail
         })
@@ -75,14 +59,14 @@ function showCrawledData(data){
         var html = '';
         for(var i=0; i<list.length; i++){
             html += `
-                <tr>
-                    <th scope="row">`+ (i + 1) +`</th>
-                    <td width="20%"><a href="`+ list[i].url +`">`+ list[i].title +`</td>
-                    <td>`+ list[i].contents +`</td>
-                    <td>`+ list[i].views +`</td>
-                    <td>`+ list[i].recommends +`</td>
-                    <td>`+ list[i].published_date +`</td>
-                </tr>
+            <tr>
+                <th scope="row">`+ (i + 1) +`</th>
+                <td width="20%">`+list[i].title+`</td>
+                <td>`+ list[i].unique_id +`</td>
+                <td>`+ list[i].ticker +`</td>
+                <td>`+ list[i].symbol +`</td>
+                <td>`+ list[i].date +`</td>
+            </tr>
             `;
         }
         $('#board').html(html);
@@ -101,11 +85,11 @@ function showData(data){
         html += `
             <tr>
                 <th scope="row">`+ (i + 1) +`</th>
-                <td width="20%"><a href="`+ list[i].url +`">`+ list[i].title +`</td>
-                <td>`+ list[i].contents +`</td>
-                <td>`+ list[i].views +`</td>
-                <td>`+ list[i].recommends +`</td>
-                <td>`+ list[i].published_date +`</td>
+                <td width="20%">`+list[i].title+`</td>
+                <td>`+ list[i].unique_id +`</td>
+                <td>`+ list[i].ticker +`</td>
+                <td>`+ list[i].symbol +`</td>
+                <td>`+ list[i].date +`</td>
             </tr>
         `;
     }

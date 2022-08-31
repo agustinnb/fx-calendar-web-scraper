@@ -11,10 +11,11 @@ import sys
 
 import django
 
-sys.path.append(os.path.dirname(os.path.abspath('.')))
+sys.path.append(os.path.dirname(os.path.abspath('..\\')))
 os.environ['DJANGO_SETTINGS_MODULE'] = 'fx-calendar-web-scraper.settings'
+django.setup()  # for > django 1.7
 
-django.setup()
+
 BOT_NAME = 'scrapy_app'
 
 SPIDER_MODULES = ['scrapy_app.spiders']

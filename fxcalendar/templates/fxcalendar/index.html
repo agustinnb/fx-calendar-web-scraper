@@ -8,12 +8,8 @@
 </head>
 <body>
     <div class="container-fluid">
-        <h1>MapleStory inven board crawling</h1>
+        <h1>FX crawling</h1>
         <div class="col">
-            <select id="site-select">
-                <option value="1">1</option>
-                <option value="2">2</option>
-            </select>
             <button id="start-crawl" class="btn btn-primary">START</button>
             <button id="show-data" class="btn btn-info">SHOW</button>
         </div>
@@ -23,10 +19,10 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">title</th>
-                    <th scope="col">contents</th>
-                    <th scope="col">views</th>
-                    <th scope="col">recommends</th>
-                    <th scope="col">published_date</th>
+                    <th scope="col">unique_id</th>
+                    <th scope="col">ticker</th>
+                    <th scope="col">symbol</th>
+                    <th scope="col">date</th>
                 </tr>
             </thead>
             <tbody id="board"></tbody>
