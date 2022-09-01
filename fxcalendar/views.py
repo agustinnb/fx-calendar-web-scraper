@@ -92,7 +92,7 @@ def crawl(request):
 
 
 def show_data(request):
-    item = ScrapyItem.objects.order_by('-lastupdate')[:5]
+    item = ScrapyItem.objects.order_by('-lastupdate')[:10]
     if not item:
         return JsonResponse(
             {'error': 'There is no data in database'},
