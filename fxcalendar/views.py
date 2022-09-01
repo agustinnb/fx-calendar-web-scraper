@@ -101,7 +101,7 @@ def show_data(request):
     dict_list = []
     for i in list(item):
         dict_data = {
-                        'unique_id': i.Unique_id,
+                        'unique_id': i.unique_id,
                         'ticker': i.ticker,
                         'symbol': i.symbol,
                         'date': i.date,
