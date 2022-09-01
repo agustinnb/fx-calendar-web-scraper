@@ -10,7 +10,7 @@ from django.views.decorators.http import require_http_methods
 from scrapyd_api import ScrapydAPI
 from fxcalendar.models import ScrapyItem
 
-scrapyd = ScrapydAPI('http://localhost:6800')
+scrapyd = ScrapydAPI('https://scrapy-fx-calendar-web-scraper.herokuapp.com')
 
 
 def is_valid_url(url):
