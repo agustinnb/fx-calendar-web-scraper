@@ -1,6 +1,5 @@
 import scrapy
 import json
-from fxcalendar.models import ScrapyItem
 from .. import items
 
 class FxcalendarSpider(scrapy.Spider):

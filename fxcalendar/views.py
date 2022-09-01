@@ -10,7 +10,7 @@ from django.views.decorators.http import require_http_methods
 from scrapyd_api import ScrapydAPI
 from fxcalendar.models import ScrapyItem
 
-scrapyd = ScrapydAPI('https://fx-calendar-web-scraper.herokuapp.com:6800')
+scrapyd = ScrapydAPI('http://localhost:6800')
 
 
 def is_valid_url(url):
@@ -35,7 +35,6 @@ def crawl(request):
 
         settings = {
             'unique_id': unique_id,
-            'USER_AGENT': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
         }
         try:
             task = scrapyd.schedule('default', 'fxcalendar', settings=settings)

@@ -10,7 +10,6 @@ $(document).ready(function(){
             url: '/api/crawl/',
             type: 'POST',
             data: {
-                'url': url,
             },
             success: crawlSuccess,
             error: crawlFail,
