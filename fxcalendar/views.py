@@ -78,7 +78,7 @@ def crawl(request):
                         'title': i.title,
                         'description': i.description,
                         'importance': i.importance,
-                        'lastUpdate': i.lastUpdate
+                        'lastupdate': i.lastupdate
                     }
                     dict_list.append(dict_data)
                 data = {'data': dict_list}
@@ -92,7 +92,7 @@ def crawl(request):
 
 
 def show_data(request):
-    item = ScrapyItem.objects.order_by('-lastUpdate')[:5]
+    item = ScrapyItem.objects.order_by('-lastupdate')[:5]
     if not item:
         return JsonResponse(
             {'error': 'There is no data in database'},
@@ -108,7 +108,7 @@ def show_data(request):
                         'title': i.title,
                         'description': i.description,
                         'importance': i.importance,
-                        'lastUpdate': i.lastUpdate
+                        'lastupdate': i.lastupdate
         }
         dict_list.append(dict_data)
     data = {'data': dict_list}

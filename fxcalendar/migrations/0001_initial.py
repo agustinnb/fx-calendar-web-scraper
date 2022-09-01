@@ -26,11 +26,11 @@ class Migration(migrations.Migration):
                 ('forecast', models.CharField(max_length=100, null=True)),
                 ('country', models.CharField(max_length=100, null=True)),
                 ('actual', models.CharField(max_length=100, null=True)),
-                ('allDayEvent', models.BooleanField(default=False, max_length=100, null=True)),
+                ('alldayevent', models.BooleanField(default=False, max_length=100, null=True)),
                 ('currency', models.CharField(max_length=100, null=True)),
                 ('reference', models.CharField(max_length=100, null=True)),
                 ('revised', models.TextField(blank=True)),
-                ('lastUpdate', models.DateTimeField(null=True)),
+                ('lastupdate', models.DateTimeField(null=True)),
             ],
         ),
     ]
